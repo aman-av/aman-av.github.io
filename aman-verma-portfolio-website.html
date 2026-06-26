@@ -1,0 +1,600 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aman Verma — Backend Engineer</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --surface: #f7f8fa;
+    --border: #e5e7eb;
+    --text: #1f2328;
+    --muted: #57606a;
+    --accent: #3b82d4;
+    --accent2: #7c5cd8;
+    --radius: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  nav .inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+  }
+  nav .logo {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+  }
+  nav ul a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  nav ul a:hover { color: var(--accent); }
+
+  /* ── LAYOUT ── */
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section { padding: 64px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+  h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 28px; color: var(--text); }
+  h3 { font-size: 1rem; font-weight: 700; }
+
+  /* ── HERO ── */
+  #hero { padding-top: 80px; padding-bottom: 72px; }
+  .hero-tag {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--accent);
+    padding: 3px 12px;
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 14px;
+    max-width: 560px;
+  }
+  .hero-links {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.82; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+  }
+  .contact-strip {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .contact-strip span { display: flex; align-items: center; gap: 6px; }
+  .contact-strip a { color: var(--muted); text-decoration: none; }
+  .contact-strip a:hover { color: var(--accent); }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .about-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .about-card .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .about-card .value {
+    font-size: 14.5px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .about-card .value.muted { font-weight: 400; color: var(--muted); }
+
+  /* ── EXPERIENCE ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    position: relative;
+    padding-left: 28px;
+    padding-bottom: 36px;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .tl-item:last-child::before { display: none; }
+  .tl-dot {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2.5px solid #fff;
+    outline: 1.5px solid var(--border);
+  }
+  .tl-dot.purple { background: var(--accent2); }
+  .tl-dot.gray { background: var(--muted); }
+  .tl-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .tl-company { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 2px; }
+  .tl-role { font-size: 15px; font-weight: 700; }
+  .tl-stack { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .tl-date { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .tl-location { font-size: 12px; color: var(--muted); }
+  .tl-body { margin-top: 10px; }
+  .tl-body ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .tl-body ul li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 13.5px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  .tl-body ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-size: 11px;
+    top: 2px;
+  }
+  .tl-body ul li strong { color: var(--text); }
+
+  /* ── SKILLS ── */
+  .skills-grid { display: flex; flex-direction: column; gap: 18px; }
+  .skill-row { }
+  .skill-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .chip.accent { border-color: #bfdbfe; background: #eff6ff; color: #1d4ed8; }
+  .chip.purple { border-color: #ddd6fe; background: #f5f3ff; color: #5b21b6; }
+
+  /* ── EDUCATION ── */
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .edu-card .inst { font-size: 16px; font-weight: 700; }
+  .edu-card .degree { font-size: 13.5px; color: var(--muted); margin-top: 4px; }
+  .edu-card .cgpa {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 6px;
+  }
+  .edu-card .date { font-size: 12.5px; color: var(--muted); text-align: right; }
+
+  /* ── HIGHLIGHTS ── */
+  .highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .hl-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    text-align: center;
+  }
+  .hl-card .num { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  .hl-card .num.purple { color: var(--accent2); }
+  .hl-card .desc { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .made-with {
+    border-top: 1px solid var(--border);
+    margin-top: 16px;
+    padding-top: 16px;
+    font-size: 11.5px;
+    color: #adb5bd;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .highlights { grid-template-columns: 1fr 1fr; }
+    .tl-header { flex-direction: column; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+
+
+<nav>
+  <div class="inner">
+    <a class="logo" href="#hero">Aman Verma</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>Aman Verma</h1>
+    <p class="hero-sub">Backend Engineer building scalable systems in production. Currently at IBM Cloud Development Labs, working on Golang, Kubernetes, and Kafka.</p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/aman-verma-01/" target="_blank">LinkedIn</a>
+      <a class="btn btn-outline" href="https://github.com/aman-av" target="_blank">GitHub</a>
+      <a class="btn btn-outline" href="mailto:aman9890.av@gmail.com">Email Me</a>
+    </div>
+    <div class="contact-strip">
+      <span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"></path></svg>
+        +917999564036
+      </span>
+      <span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <a href="mailto:aman9890.av@gmail.com">aman9890.av@gmail.com</a>
+      </span>
+      <span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Bangalore, Karnataka
+      </span>
+    </div>
+  </div>
+</section>
+
+
+<section id="about">
+  <div class="wrap">
+    <h2>At a Glance</h2>
+    <div class="highlights">
+      <div class="hl-card">
+        <div class="num">3+</div>
+        <div class="desc">Years of software engineering experience</div>
+      </div>
+      <div class="hl-card">
+        <div class="num purple">750+</div>
+        <div class="desc">Competitive programming problems solved</div>
+      </div>
+      <div class="hl-card">
+        <div class="num">80%</div>
+        <div class="desc">Reduction in ETL processing time at CAST</div>
+      </div>
+    </div>
+
+    <div class="about-grid" style="margin-top:20px">
+      <div class="about-card">
+        <div class="label">Current Role</div>
+        <div class="value">Software Engineer — IBM Cloud Development Labs</div>
+      </div>
+      <div class="about-card">
+        <div class="label">Core Stack</div>
+        <div class="value">Golang · Kubernetes · Kafka · Neo4j · Python</div>
+      </div>
+      <div class="about-card">
+        <div class="label">Education</div>
+        <div class="value">B.E. Electronics &amp; Instrumentation<br /><span style="font-weight:400;font-size:13px;color:var(--muted)">MS Ramaiah Institute of Technology · CGPA 8.5</span></div>
+      </div>
+      <div class="about-card">
+        <div class="label">Interests</div>
+        <div class="value muted">Distributed systems, LLM-powered applications, infrastructure automation, graph databases</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <div class="timeline">
+
+      
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-company">IBM — IBM Cloud Development Labs</div>
+            <div class="tl-role">Software Engineer</div>
+            <div class="tl-stack">Golang · Kubernetes · Kafka</div>
+          </div>
+          <div style="text-align:right">
+            <div class="tl-date">Dec 2025 – Present</div>
+            <div class="tl-location">Bangalore, Karnataka</div>
+          </div>
+        </div>
+        <div class="tl-body">
+          <ul>
+            <li><strong>Drove full-lifecycle ownership</strong> of a public-facing CLI tool for observability log-router services — from architectural design to launch; engineered the utility to automate v1-to-v3 migrations and <strong>prevent production outages</strong> through user-driven automation.</li>
+            <li><strong>Accountable for Kubernetes infrastructure stability</strong>, orchestrating staging-to-production deployments and worker node upgrades; maintained high availability for cloud services while serving as primary responder for distributed system production incidents.</li>
+          </ul>
+        </div>
+      </div>
+
+      
+      <div class="tl-item">
+        <div class="tl-dot purple"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-company">CAST Software</div>
+            <div class="tl-role">Software Engineer</div>
+            <div class="tl-stack">Golang · Neo4j · Python · LLM · Prompt Engineering · LLD</div>
+          </div>
+          <div style="text-align:right">
+            <div class="tl-date">Aug 2023 – Dec 2025</div>
+            <div class="tl-location">Bangalore, Karnataka</div>
+          </div>
+        </div>
+        <div class="tl-body">
+          <ul>
+            <li>Designed and implemented high-throughput backend services in Go using goroutines, worker pools, and job queues to reliably handle long-running and concurrent workloads.</li>
+            <li>Re-architected distributed ETL pipelines for JEE and .NET analysis engines, <strong>reducing end-to-end processing time by 80%</strong> through improved orchestration and parallel execution.</li>
+            <li>Optimized graph database access patterns and Cypher queries on Neo4j, <strong>reducing execution time by 65%</strong> (80 mins → 25 mins) for large-scale graph workloads.</li>
+            <li>Built a production-grade LLM-powered platform using RAG architecture, LangChain, and pluggable model providers (OpenAI, Azure, Ollama), enabling scalable AI-driven workflows.</li>
+            <li>Designed context retrieval and prompt orchestration pipelines, <strong>improving response accuracy by 60%</strong> through semantic routing and efficient context window management.</li>
+            <li>Developed observability systems for AI services, tracking token usage, latency, and hallucination signals.</li>
+            <li>Engineered zero-downtime Neo4j migration (4.4 → 5.x) with data validation, backward compatibility, and rollback safety.</li>
+            <li><strong>Improved ETL data ingestion efficiency by 27%</strong> via optimized batching, concurrency control, and memory-efficient processing.</li>
+          </ul>
+        </div>
+      </div>
+
+      
+      <div class="tl-item">
+        <div class="tl-dot gray"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-company">CAST Software</div>
+            <div class="tl-role">Software Engineer Intern</div>
+            <div class="tl-stack">Batch · Bash · Jenkins · Installer · Docker</div>
+          </div>
+          <div style="text-align:right">
+            <div class="tl-date">May 2023 – Jul 2023</div>
+            <div class="tl-location">Bangalore, Karnataka</div>
+          </div>
+        </div>
+        <div class="tl-body">
+          <ul>
+            <li>Automated build and deployment processes by managing and creating Jenkins pipelines for various product tools.</li>
+            <li>Developed and maintained installers for both cloud-based and imaging products.</li>
+          </ul>
+        </div>
+      </div>
+
+      
+      <div class="tl-item">
+        <div class="tl-dot gray"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-company">TechBag</div>
+            <div class="tl-role">Software Developer Intern</div>
+            <div class="tl-stack">Next.js · React.js · Express.js · Node.js · Postgres · Docker</div>
+          </div>
+          <div style="text-align:right">
+            <div class="tl-date">Apr 2023 – May 2023</div>
+            <div class="tl-location">Bangalore, Karnataka</div>
+          </div>
+        </div>
+        <div class="tl-body">
+          <ul>
+            <li>Developed a responsive website design for mobile and tablet compatibility.</li>
+            <li>Improved data management and performance by designing Postgres schemas for API endpoints.</li>
+          </ul>
+        </div>
+      </div>
+
+      
+      <div class="tl-item">
+        <div class="tl-dot gray"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-company">E Drives</div>
+            <div class="tl-role">Software Developer Intern</div>
+            <div class="tl-stack">React.js · Express.js · Node.js · Payment &amp; Payout APIs</div>
+          </div>
+          <div style="text-align:right">
+            <div class="tl-date">Jan 2022 – Oct 2022</div>
+            <div class="tl-location">Bangalore, Karnataka</div>
+          </div>
+        </div>
+        <div class="tl-body">
+          <ul>
+            <li>Implemented payment and payout workflows for streamlined transaction handling.</li>
+            <li>Automated investor onboarding, <strong>cutting setup time to under 2 minutes</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-label">Languages</div>
+        <div class="chips">
+          <span class="chip accent">Golang</span>
+          <span class="chip accent">Python</span>
+          <span class="chip">C++</span>
+          <span class="chip">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Technologies &amp; Frameworks</div>
+        <div class="chips">
+          <span class="chip accent">Go</span>
+          <span class="chip accent">Kubernetes</span>
+          <span class="chip accent">Kafka</span>
+          <span class="chip purple">LLM / RAG</span>
+          <span class="chip purple">LangChain</span>
+          <span class="chip purple">Prompt Engineering</span>
+          <span class="chip">IBM Cloud</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Jenkins</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">React.js</span>
+          <span class="chip">Next.js</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Databases</div>
+        <div class="chips">
+          <span class="chip purple">Neo4j (Graph DB)</span>
+          <span class="chip">MongoDB</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">NoSQL</span>
+          <span class="chip">SQL</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Data Structures &amp; Algorithms</div>
+        <div class="chips">
+          <span class="chip">750+ problems solved</span>
+          <span class="chip">Codeforces</span>
+          <span class="chip">LeetCode</span>
+          <span class="chip">CodeChef</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education</h2>
+    <div class="edu-card">
+      <div>
+        <div class="inst">MS Ramaiah Institute of Technology</div>
+        <div class="degree">Bachelor of Engineering — Electronics and Instrumentation</div>
+        <div class="cgpa">CGPA: 8.5 / 10</div>
+      </div>
+      <div class="date">
+        Aug 2019 – Jun 2023<br />
+        <span style="font-size:11.5px">Bangalore, Karnataka</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap" style="padding-bottom:8px">
+    <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:10px">
+      <a href="mailto:aman9890.av@gmail.com">aman9890.av@gmail.com</a>
+      <a href="https://www.linkedin.com/in/aman-verma-01/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/aman-av" target="_blank">GitHub</a>
+      <a href="tel:+917999564036">+91 79995 64036</a>
+    </div>
+    <div style="color:var(--muted);font-size:12px">© 2025 Aman Verma · Backend Engineer · Bangalore, India</div>
+  </div>
+  <div class="made-with">Made with IBM Bob</div>
+</footer>
+
+</body>
+</html>
